@@ -2,6 +2,7 @@
   "name": "rest-api",
   "version": "1.0.0",
   "description": "Clase 3 NodeJS",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
@@ -19,6 +20,10 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "standard": "^17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
   }
 }
