@@ -1,0 +1,32 @@
+### Recuperar todas las películas
+GET http://localhost:1234/movies
+
+### Recuperar una película por id
+GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+### Recuperar todas las películas por un género
+GET http://localhost:1234/movies?genre=adVentuRe
+###
+GET http://localhost:1234/
+
+### Crear un pelicula
+POST http://localhost:1234/movies
+Content-Type:  application/json
+
+{
+  "sql": "SELECT * FROM users",
+  "title": "Ejemplo de película",
+  "year": 2022,
+  "director": "Director Ejemplo",
+  "duration": 120,
+  "rate": 8,
+  "poster": "https://ejemplo.com/poster.jpg",
+  "genre": ["Drama", "Comedy"]
+}
+### Actualizar una pelicula
+PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+{
+  "year": 1997
+}
