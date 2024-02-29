@@ -1,16 +1,16 @@
 import pgPromise from 'pg-promise'
+import { config } from 'dotenv'
 
-const pgp = pgPromise()
+config()
 
-const dbConfig = {
-  host: 'localhost',
-  user: 'postgres',
-  port: 5432,
-  password: '123456',
-  database: 'moviesdb'
-}
+const pgp = pgPromise({
 
-const client = pgp(dbConfig)
+})
+
+const client = pgp({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+})
 
 export class MovieModel {
   static async getAll ({ genre }) {
@@ -23,7 +23,7 @@ export class MovieModel {
 
   static async getById ({ id }) {
     const movie = await client.query(
-      'SELECT * FROM movie WHERE id = $1',
+      'SELECT * FROM movies¿ WHERE id = $1',
       [id]
     )
 
@@ -60,7 +60,6 @@ export class MovieModel {
           'SELECT id FROM genre WHERE LOWER(name) = LOWER($1)',
           [genreName]
         )
-        console.log(genreQuery)
         if (genreQuery.length > 0) {
           genreIds.push(genreQuery[0].id)
         } else {
@@ -101,10 +100,9 @@ export class MovieModel {
         'DELETE FROM movie WHERE id = $1',
         [id]
       )
-
+      console.log(result.length)
       // Verificar si se eliminó con éxito la película
       const success = result.length > 0
-
       return success
     } catch (error) {
       console.error('Error deleting movie:', error)
