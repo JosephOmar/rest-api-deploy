@@ -23,7 +23,7 @@ export class MovieModel {
 
   static async getById ({ id }) {
     const movie = await client.query(
-      'SELECT * FROM movies WHERE id = $1',
+      'SELECT * FROM movie WHERE id = $1',
       [id]
     )
 
